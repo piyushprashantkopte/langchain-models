@@ -1,10 +1,12 @@
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
 from langchain_core.output_parsers import StrOutputParser
+from langchain_community.llms import Ollama
 from dotenv import load_dotenv
 import streamlit as st
 import os
 load_dotenv()
+
 
 os.environ["GROQ_API_KEY"]=os.getenv("GROQ_API_KEY")
 os.environ["LANGSMITH_TRACING"]=os.getenv("LANGSMITH_TRACING")
@@ -21,11 +23,11 @@ prompt = ChatPromptTemplate.from_messages(
 
 ## streamlit framework
 
-st.title('Langchain Demo With Groq API')
+st.title('Langchain Demo With LLAMA3.2')
 input_text=st.text_input("Search the topic u want")
 
-# deepseek LLm 
-llm=ChatGroq(temperature=0, model_name="deepseek-r1-distill-llama-70b")
+# ollama llama2 LLm 
+llm=Ollama(model="llama3.2")
 output_parser=StrOutputParser()
 chain=prompt|llm|output_parser
 
