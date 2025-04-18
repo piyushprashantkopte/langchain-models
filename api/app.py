@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from langchain.prompts import ChatPromptTemplate
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langserve import add_routes
 import uvicorn
 import os
-from langchain_community.llms import Ollama
+from langchain_ollama import OllamaLLM
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -20,12 +20,12 @@ app=FastAPI(
 
 add_routes(
     app,
-    ChatOpenAI(model="gpt-3.5-turbo-0125"),
+    ChatOpenAI(model="gpt-4.o"),
     path="/openai"
 )
-model=ChatOpenAI(model="gpt-3.5-turbo-0125")
-##ollama llama2
-llm=Ollama(model="llama2")
+model=ChatOpenAI(model="gpt-4.o")
+##ollama llama3.2
+llm=OllamaLLM(model="llama3.2")
 
 prompt1=ChatPromptTemplate.from_template("Write me an essay about {topic} with 100 words")
 prompt2=ChatPromptTemplate.from_template("Write me an poem about {topic} for a 5 years child with 100 words")
