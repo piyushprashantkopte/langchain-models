@@ -32,7 +32,7 @@ prompt2=ChatPromptTemplate.from_template("Write me an poem about {topic} for a 5
 
 add_routes(
     app,
-    prompt1|model,
+    llm|model,
     path="/essay"
 
 
