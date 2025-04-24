@@ -23,11 +23,11 @@ prompt = ChatPromptTemplate.from_messages(
 
 ## streamlit framework
 
-st.title('Langchain Demo With LLAMA2')
+st.title('Langchain Demo With LLAMA3')
 input_text=st.text_input("Search the topic u want")
 
-# ollama llama2 LLm 
-llm=Ollama(model="llama2")
+# ollama llama3 LLm 
+llm=Ollama(model="llama3")
 output_parser=StrOutputParser()
 chain=prompt|llm|output_parser
 
